@@ -51,6 +51,7 @@
   color: #b4282d;
 }
 .indexContainer .navbar {
+  margin-bottom: 10rpx;
   white-space: nowrap;
 }
 .indexContainer .navbar .nav-item {

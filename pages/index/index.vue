@@ -10,48 +10,57 @@
 			<button class="btn" type="default">Gin</button>
 		</view>
 		<!-- navbar区域 -->
-		<scroll-view class="navbar" scroll-x v-if="kingKong.kingKongModule">
-			<view class="nav-item active">推荐</view>
+		<scroll-view class="navbar" 
+			scroll-with-animation
+			:scroll-into-view="'_'+currentIndex" scroll-x v-if="kingKong.kingKongModule" @click="switchNav">
+			<view class="nav-item" data-index="999" :class="{active:currentIndex==='999'?true:''}">推荐</view>
 			<view class="nav-item" 
-				v-for="item in kingKong.kingKongModule.kingKongList" 
+				v-for="(item, index) in kingKong.kingKongModule.kingKongList" 
+				:class="{active:currentIndex===`${index}`?true:''}"
+				:data-index="`${index}`"
+				:id="'_'+index"
 				:key="item.L1Id">{{item.text}}</view>
 		</scroll-view>
+		<Recommend/>
+		<Category v-for="goods in goodsInfo" :key="goods.titlePicUrl" :goods="goods"/>
 	</view>
 </template>
 
 <script>
+	import {mapState, mapGetters} from 'vuex'
 	import request from '../../utils/request.js'
+	import Recommend from '../../components/recommend/index.vue'
+	import Category from '../../components/category/index.vue'
 	
 	export default {
 		data() {
 			return {
-				kingKong: {}
+				currentIndex: '999'
 			}
 		},
-		async mounted() {
-			const res = await request('/getHomeData')
-			if(!res) {
-				this.kingKong = {
-					"kingKongModule": {
-						"kingKongList": [
-							{
-							  "text": "居家生活",
-								"L1Id": 111
-							},
-							{
-							  "text": "服饰鞋包",
-								"L1Id": 222
-							},
-							{
-							  "text": "美食酒水",
-								"L1Id": 333
-							}
-						]
-					}
+		mounted() {
+			this.getHomeInfo()
+		},
+		methods: {
+			switchNav(event) {
+				const {index} = event.target.dataset
+				if(index) {					
+					this.currentIndex = index + ''
 				}
-			}else {
-				this.kingKong = res.data
+			},
+			getHomeInfo() {
+				this.$store.dispatch('getHomeData')
 			}
+		},
+		components: {
+			Recommend,
+			Category
+		},
+		computed: {
+			...mapState({
+				kingKong: state => state.home.kingKong
+			}),
+			...mapGetters(['goodsInfo'])
 		}
 	}
 </script>
@@ -95,6 +104,7 @@
 				line-height 60upx
 				color #b4282d
 		.navbar
+			margin-bottom 10upx
 			white-space nowrap
 			.nav-item
 				display inline-block

@@ -35,7 +35,7 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.9.2",
+  "libVersion": "",
   "appid": "wxd0d785600cb4dd94",
   "projectname": "uniapp-learn",
   "simulatorType": "wechat",
