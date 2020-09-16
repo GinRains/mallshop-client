@@ -1,21 +1,29 @@
 <template>
 	<view class="buyingContainer">
-		<vue-falls :photoList="photoList" width="500"></vue-falls>
+		openId: 
+		<view>{{openId}}</view>
 	</view>
 </template>
 
 <script>
-	import buyingInfo from '../../utils/request.js'
+	import request from '../../utils/request.js'
 	
 	export default {
 		data() {
 			return {
 				saleGoods: {},
-				photoList: ["https://yanxuan.nosdn.127.net/e72e29b81e2178a4ee98b25da5898265.jpg"]
+				photoList: ["https://yanxuan.nosdn.127.net/e72e29b81e2178a4ee98b25da5898265.jpg"],
+				openId: ''
 			}
 		},
 		mounted() {
-			
+			uni.login({
+				success: async ({code}) => {
+					
+					const res = await request('/getOpenId', {code})
+					this.openId = res.data
+				}
+			})
 		},
 		methods: {
 			async getBuyingInfo() {

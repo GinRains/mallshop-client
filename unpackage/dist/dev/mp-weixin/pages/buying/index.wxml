@@ -1,1 +1,1 @@
-<view class="buyingContainer"><vue-falls vue-id="12bb09ee-1" photoList="{{photoList}}" width="500" bind:__l="__l"></vue-falls></view>
+<view class="buyingContainer">openId:<view>{{openId}}</view></view>
