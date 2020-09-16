@@ -38,6 +38,7 @@
 				line-height 200upx
 				text-align center
 				vertical-align top
+				font-size 28upx
 			.goods-item
 				display inline-block
 				margin 10upx 20upx

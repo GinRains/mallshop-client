@@ -26,11 +26,14 @@
 				<text>{{category.text}}</text>
 			</view>
 		</view>
+		
+		<Category v-for="goods in goodsInfo" :key="goods.titlePicUrl" :goods="goods"/>
 	</view>
 </template>
 
 <script>
 	import {mapGetters} from 'vuex'
+	import Category from '../../components/category/index.vue'
 	
 	export default {
 		data() {
@@ -39,7 +42,10 @@
 			}
 		},
 		computed: {
-			...mapGetters(['categoryList', 'policyList'])
+			...mapGetters(['categoryList', 'policyList', 'goodsInfo'])
+		},
+		components: {
+			Category
 		}
 	}
 </script>

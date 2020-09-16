@@ -1,7 +1,7 @@
 {
-  "navigationBarTitleText": "分类",
+  "navigationBarTitleText": "首页",
   "usingComponents": {
     "recommend": "/components/recommend/index",
-    "category": "/components/category/index"
+    "cate-list": "/components/cateList/index"
   }
 }

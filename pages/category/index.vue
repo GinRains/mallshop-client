@@ -72,7 +72,7 @@
 				border-radius 10upx
 				font-size 28upx
 		.content
-			height calc(100vh - 82upx)
+			height calc(100vh - 82upx - var(--window-top) - var(--window-bottom))
 			.left
 				float left
 				width 20%

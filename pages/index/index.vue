@@ -21,16 +21,18 @@
 				:id="'_'+index"
 				:key="item.L1Id">{{item.text}}</view>
 		</scroll-view>
-		<Recommend/>
-		<Category v-for="goods in goodsInfo" :key="goods.titlePicUrl" :goods="goods"/>
+		<scroll-view class="recommendScroll" scroll-y="true" >
+			<Recommend v-if="currentIndex==='999'"/>
+			<CateList v-else :navIndex="currentIndex"/>
+		</scroll-view>
 	</view>
 </template>
 
 <script>
-	import {mapState, mapGetters} from 'vuex'
+	import {mapState} from 'vuex'
 	import request from '../../utils/request.js'
 	import Recommend from '../../components/recommend/index.vue'
-	import Category from '../../components/category/index.vue'
+	import CateList from '../../components/cateList/index.vue'
 	
 	export default {
 		data() {
@@ -54,13 +56,12 @@
 		},
 		components: {
 			Recommend,
-			Category
+			CateList
 		},
 		computed: {
 			...mapState({
 				kingKong: state => state.home.kingKong
-			}),
-			...mapGetters(['goodsInfo'])
+			})
 		}
 	}
 </script>
@@ -70,7 +71,7 @@
 		.header
 			display flex
 			align-items center
-			margin-top 20upx
+			padding-top 20upx
 			.logo
 				margin 0 20upx
 				flex-shrink 0
@@ -116,4 +117,6 @@
 				font-size 28upx
 				&.active
 					border-bottom 2upx solid #B4282D
+		.recommendScroll
+			height calc(100vh - 172upx - var(--window-top) - var(--window-bottom))
 </style>

@@ -904,7 +904,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7329,7 +7329,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7350,14 +7350,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7442,7 +7442,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8032,13 +8032,15 @@ function normalizeComponent (
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
 
-var _home = _interopRequireDefault(__webpack_require__(/*! ./modules/home.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _home = _interopRequireDefault(__webpack_require__(/*! ./modules/home.js */ 13));
+var _cart = _interopRequireDefault(__webpack_require__(/*! ./modules/cart.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({
   modules: {
-    home: _home.default } });var _default =
+    home: _home.default,
+    cart: _cart.default } });var _default =
 
 
 
@@ -10061,6 +10063,317 @@ function _default(url) {var data = arguments.length > 1 && arguments[1] !== unde
   });
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 19 */
+/*!*******************************************************************************************!*\
+  !*** C:/Users/AIERXUAN/Desktop/mini-program/uniapp/mallshop-uniapp/store/modules/cart.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+var state = {
+  goodsDetailInfo: [
+  {
+    "isChecked": 1,
+    "count": 2,
+    "promId": 0,
+    "showPoints": false,
+    "itemTagList": [
+    {
+      "itemId": 3522104,
+      "tagId": 128111154,
+      "freshmanExclusive": false,
+      "name": "暖冬特惠",
+      "subType": 204,
+      "forbidJump": false,
+      "type": 2 }],
+
+
+    "rank": 1,
+    "id": 3522104,
+    "sellVolume": 2666,
+    "primaryPicUrl": "https://yanxuan-item.nosdn.127.net/b1d2e131c1226e59db7f8b516e604358.png",
+    "soldOut": false,
+    "sortFlag": 0,
+    "commentCount": 0,
+    "onSaleTime": 1568803135928,
+    "picMode": 1,
+    "commentWithPicCount": 0,
+    "underShelf": false,
+    "status": 2,
+    "couponConflict": true,
+    "forbiddenBuy": false,
+    "promotionDesc": "暖冬特惠",
+    "limitedFlag": 204,
+    "pieceNum": 0,
+    "itemSizeTableDetailFlag": false,
+    "forbidExclusiveCal": false,
+    "rewardShareFlag": false,
+    "updateTime": 1576213443639,
+    "showCommentEntrance": true,
+    "pieceUnitDesc": "件",
+    "specialPromTag": "",
+    "counterPrice": 569,
+    "categoryL2Id": 0,
+    "retailPrice": 427,
+    "primarySkuPreSellPrice": 0,
+    "preLimitFlag": 0,
+    "itemPromValid": true,
+    "promTag": "暖冬特惠",
+    "source": 0,
+    "points": 0,
+    "primarySkuPreSellStatus": 0,
+    "extraServiceFlag": 0,
+    "flashPageLink": "",
+    "autoOnsaleTimeLeft": 0,
+    "innerData": {},
+    "saleCenterSkuId": 0,
+    "pointsStatus": 0,
+    "extraPrice": "",
+    "colorNum": 4,
+    "showTime": 0,
+    "autoOnsaleTime": 0,
+    "preemptionStatus": 1,
+    "isPreemption": 0,
+    "zcSearchFlag": false,
+    "name": "男式无缝锁温宽松羽绒服",
+    "appExclusiveFlag": false,
+    "itemType": 1,
+    "listPicUrl": "https://yanxuan-item.nosdn.127.net/c76d77c9c3c7646c060583a618d2bf3b.png",
+    "pointsPrice": 0,
+    "simpleDesc": "时尚酷潮的冬日暖意",
+    "seoTitle": "",
+    "newItemFlag": false,
+    "buttonType": 0,
+    "primarySkuId": 300004325,
+    "displaySkuId": 300004320,
+    "productPlace": "",
+    "itemSizeTableFlag": false },
+
+  {
+    "isChecked": 1,
+    "count": 2,
+    "promId": 0,
+    "showPoints": false,
+    "itemTagList": [
+    {
+      "itemId": 3522116,
+      "tagId": 128111154,
+      "freshmanExclusive": false,
+      "name": "暖冬特惠",
+      "subType": 204,
+      "forbidJump": false,
+      "type": 2 }],
+
+
+    "rank": 1,
+    "id": 3522116,
+    "sellVolume": 1931,
+    "primaryPicUrl": "https://yanxuan-item.nosdn.127.net/e8a144cf137fb16d45c610e2431edf17.png",
+    "soldOut": false,
+    "sortFlag": 0,
+    "commentCount": 0,
+    "onSaleTime": 1569865753850,
+    "picMode": 1,
+    "commentWithPicCount": 0,
+    "underShelf": false,
+    "status": 2,
+    "couponConflict": true,
+    "forbiddenBuy": false,
+    "promotionDesc": "暖冬特惠",
+    "limitedFlag": 204,
+    "pieceNum": 0,
+    "itemSizeTableDetailFlag": false,
+    "forbidExclusiveCal": false,
+    "rewardShareFlag": false,
+    "updateTime": 1576200801757,
+    "showCommentEntrance": true,
+    "pieceUnitDesc": "件",
+    "specialPromTag": "",
+    "counterPrice": 1099,
+    "categoryL2Id": 0,
+    "retailPrice": 802,
+    "primarySkuPreSellPrice": 0,
+    "preLimitFlag": 0,
+    "itemPromValid": true,
+    "promTag": "暖冬特惠",
+    "source": 0,
+    "points": 0,
+    "primarySkuPreSellStatus": 0,
+    "extraServiceFlag": 0,
+    "flashPageLink": "",
+    "autoOnsaleTimeLeft": 0,
+    "innerData": {},
+    "saleCenterSkuId": 0,
+    "pointsStatus": 0,
+    "extraPrice": "",
+    "colorNum": 4,
+    "showTime": 0,
+    "autoOnsaleTime": 0,
+    "preemptionStatus": 1,
+    "isPreemption": 0,
+    "zcSearchFlag": false,
+    "name": "强势抗寒之选，男式地表强温工装羽绒服",
+    "appExclusiveFlag": false,
+    "itemType": 1,
+    "listPicUrl": "https://yanxuan-item.nosdn.127.net/1d8a79464c1d5d45400d393d055ac5a2.png",
+    "pointsPrice": 0,
+    "simpleDesc": "舒适的白鹅绒，温暖无所畏惧",
+    "seoTitle": "",
+    "newItemFlag": false,
+    "buttonType": 0,
+    "primarySkuId": 300011034,
+    "displaySkuId": 300011041,
+    "productPlace": "",
+    "itemSizeTableFlag": false },
+
+  {
+    "isChecked": 0,
+    "count": 3,
+    "promId": 0,
+    "showPoints": false,
+    "itemTagList": [
+    {
+      "itemId": 3522117,
+      "tagId": 128111154,
+      "freshmanExclusive": false,
+      "name": "暖冬特惠",
+      "subType": 204,
+      "forbidJump": false,
+      "type": 2 }],
+
+
+    "rank": 1,
+    "id": 3522117,
+    "sellVolume": 103,
+    "primaryPicUrl": "https://yanxuan-item.nosdn.127.net/5ad5fa11cd6f10e446c44ac62ff256a2.png",
+    "soldOut": false,
+    "sortFlag": 0,
+    "commentCount": 0,
+    "onSaleTime": 1569864429638,
+    "picMode": 1,
+    "commentWithPicCount": 0,
+    "underShelf": false,
+    "status": 2,
+    "couponConflict": true,
+    "forbiddenBuy": false,
+    "promotionDesc": "暖冬特惠",
+    "limitedFlag": 204,
+    "pieceNum": 0,
+    "itemSizeTableDetailFlag": false,
+    "forbidExclusiveCal": false,
+    "rewardShareFlag": false,
+    "updateTime": 1576223950683,
+    "showCommentEntrance": true,
+    "pieceUnitDesc": "件",
+    "specialPromTag": "",
+    "counterPrice": 899,
+    "categoryL2Id": 0,
+    "retailPrice": 656,
+    "primarySkuPreSellPrice": 0,
+    "preLimitFlag": 0,
+    "itemPromValid": true,
+    "promTag": "暖冬特惠",
+    "source": 0,
+    "points": 0,
+    "primarySkuPreSellStatus": 0,
+    "extraServiceFlag": 0,
+    "flashPageLink": "",
+    "autoOnsaleTimeLeft": 0,
+    "innerData": {},
+    "saleCenterSkuId": 0,
+    "pointsStatus": 0,
+    "extraPrice": "",
+    "colorNum": 2,
+    "showTime": 0,
+    "autoOnsaleTime": 0,
+    "preemptionStatus": 1,
+    "isPreemption": 0,
+    "zcSearchFlag": false,
+    "name": "温度尽在掌控，男式地表强温短款羽绒服",
+    "appExclusiveFlag": false,
+    "itemType": 1,
+    "listPicUrl": "https://yanxuan-item.nosdn.127.net/ea743e5f0137d3a7d5d828ceec850416.png",
+    "pointsPrice": 0,
+    "simpleDesc": "防泼水功能面料，风雨无惧",
+    "seoTitle": "",
+    "newItemFlag": false,
+    "buttonType": 0,
+    "primarySkuId": 300010058,
+    "displaySkuId": 300010059,
+    "productPlace": "",
+    "itemSizeTableFlag": false }] };
+
+
+
+
+var mutations = {
+  addGoods: function addGoods(state, goods) {
+    var isExist = state.goodsDetailInfo.some(function (item) {return item.id === goods.id;});
+
+    if (!isExist) {
+      _vue.default.set(goods, 'count', 1);
+      _vue.default.set(goods, 'isChecked', 1);
+
+      state.goodsDetailInfo.push(goods);
+    } else {
+      state.goodsDetailInfo.find(function (item) {return item.id === goods.id;}).count++;
+    }
+  },
+  switchGoodsState: function switchGoodsState(state, _ref) {var index = _ref.index,isChecked = _ref.isChecked;
+    state.goodsDetailInfo[index].isChecked = isChecked;
+  },
+  changeGoodsNum: function changeGoodsNum(state, _ref2) {var index = _ref2.index,type = _ref2.type;
+    if (type) {
+      state.goodsDetailInfo[index].count++;
+    } else {
+      if (state.goodsDetailInfo[index].count > 1) {
+        state.goodsDetailInfo[index].count--;
+      }
+    }
+  },
+  changeAllGoodsState: function changeAllGoodsState(state, isChecked) {
+    state.goodsDetailInfo.forEach(function (item) {return item.isChecked = isChecked;});
+  } };
+
+
+var actions = {};
+
+
+
+var getters = {
+  getGoodsNum: function getGoodsNum(state) {
+    return state.goodsDetailInfo.reduce(function (prev, curr) {
+      if (curr.isChecked) {
+        return prev += curr.count;
+      }
+
+      return prev;
+    }, 0);
+  },
+  getGoodsAllPrice: function getGoodsAllPrice(state) {
+    return state.goodsDetailInfo.reduce(function (prev, curr) {
+      if (curr.isChecked) {
+        return prev += curr.count * curr.retailPrice;
+      }
+
+      return prev;
+    }, 0);
+  },
+  isAllChecked: function isAllChecked(state) {
+    return state.goodsDetailInfo.every(function (item) {return item.isChecked;});
+  } };var _default =
+
+
+{
+  state: state,
+  mutations: mutations,
+  actions: actions,
+  getters: getters };exports.default = _default;
 
 /***/ })
 ]]);

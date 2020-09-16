@@ -17,6 +17,7 @@
   line-height: 200rpx;
   text-align: center;
   vertical-align: top;
+  font-size: 28rpx;
 }
 .goodsContainer .goods .goods-item {
   display: inline-block;

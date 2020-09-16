@@ -12,7 +12,7 @@
   font-size: 28rpx;
 }
 .categoryContainer .content {
-  height: calc(100vh - 82rpx);
+  height: calc(100vh - 82rpx - 0px - 0px);
 }
 .categoryContainer .content .left {
   float: left;
